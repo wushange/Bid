@@ -9,6 +9,8 @@ import com.dmcc.bid.injector.module.ApplicationModule;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
 import com.tencent.bugly.Bugly;
+import com.tencent.smtt.sdk.QbSdk;
+import com.tencent.smtt.sdk.TbsDownloader;
 
 import javax.inject.Inject;
 
@@ -39,6 +41,8 @@ public class MyApplication extends Application {
         Bugly.init(getApplicationContext(), "900057087", false);
         Logger.init("WUSHANGE").logLevel(LogLevel.FULL);
         context = this;
+        QbSdk.allowThirdAppDownload(true);
+        TbsDownloader.needDownload(this, false);
     }
 
 

@@ -68,4 +68,5 @@ dependencies {
     compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
     compile 'me.grantland:autofittextview:0.2.+'
     testCompile 'junit:junit:4.12'
+    compile files('libs/tbs_sdk_withdownload.jar')
 }

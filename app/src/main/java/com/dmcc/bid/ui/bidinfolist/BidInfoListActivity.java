@@ -14,6 +14,7 @@ import com.dmcc.bid.bean.BidInfo;
 import com.dmcc.bid.bean.BidItem;
 import com.dmcc.bid.util.PixelUtil;
 import com.dmcc.bid.widget.AppTitle;
+import com.dmcc.bid.widget.x5webview.WebViewActivity;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
@@ -88,6 +89,9 @@ public class BidInfoListActivity extends BaseActivity implements BidInfoListCont
         adapter.setNoMore(R.layout.view_nomore);
         adapter.setMore(R.layout.view_more, this);
         adapter.setError(R.layout.view_error);
+        adapter.setOnItemClickListener(position -> {
+            WebViewActivity.startActivity(this, "https://github.com/wushge11");
+        });
     }
 
 
