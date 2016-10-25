@@ -91,7 +91,7 @@ public class CustomTextView extends LinearLayout {
     }
 
     public void reset() {
-        mTitle.setText("0");
+//        mTitle.setText("");
         mContext.setText("0");
     }
 

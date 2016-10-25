@@ -11,6 +11,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.dmcc.bid.R;
@@ -28,6 +29,7 @@ import com.jude.easyrecyclerview.decoration.DividerDecoration;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -60,7 +62,8 @@ public class BidListActivity extends BaseActivity implements BidListContract.Vie
     CustomTextView mBidlistCount;
     @BindView(R.id.erl_bidlist_view)
     EasyRecyclerView mRecyclerView;
-
+    @BindView(R.id.tv_list_desc)
+    TextView mtvListDesc;
 
     @Inject
     BidListPresenter presenter;
@@ -69,6 +72,8 @@ public class BidListActivity extends BaseActivity implements BidListContract.Vie
     String tempKeyWord = "";
     int page = 1;
     int currtParty = mISFirst;
+
+    List<BidItem> bidItemList = new ArrayList<>();
 
     @Override
     public void initInjector() {
@@ -105,7 +110,6 @@ public class BidListActivity extends BaseActivity implements BidListContract.Vie
     @Override
     public void onRefresh() {
         page = 1;
-        adapter.clear();
         textViewReset();
         presenter.searchKeyWord();
     }
@@ -128,7 +132,9 @@ public class BidListActivity extends BaseActivity implements BidListContract.Vie
 
     @Override
     public void searchError(String errinfo) {
-        mBaseOperation.showSweetError("错误", errinfo);
+        textViewReset();
+        mBaseOperation.dissLoading();
+//        mBaseOperation.showSweetWarning("暂无数据", errinfo);
     }
 
     @Override
@@ -161,13 +167,30 @@ public class BidListActivity extends BaseActivity implements BidListContract.Vie
         });
         back.setOnClickListener(v -> finish());
         mSearch.setOnClickListener(v -> presenter.searchKeyWord());
+        mtvListDesc.setOnClickListener(v -> {
+            Comparator comp = (o1, o2) -> {//排序
+                BidItem p1 = (BidItem) o1;
+                BidItem p2 = (BidItem) o2;
+                if (p1.getBidId().size() < p2.getBidId().size())
+                    return 1;
+                else if (p1.getBidId().size() == p2.getBidId().size())
+                    return 0;
+                else if (p1.getBidId().size() > p2.getBidId().size())
+                    return -1;
+                return 0;
+            };
+            adapter.sort(comp);
+
+        });
         DividerDecoration itemDecoration = new DividerDecoration(Color.parseColor("#E5E5E5"), PixelUtil.dp2px(getContext(), 0.5f), PixelUtil.dp2px(getContext(), 0), 0);//color & height & paddingLeft & paddingRight
         itemDecoration.setDrawLastItem(true);//sometimes you don't want draw the divider for the last item,default is true.
         itemDecoration.setDrawHeaderFooter(false);//whether draw divider for header and footer,default is false.
         mRecyclerView.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
         mRecyclerView.addItemDecoration(itemDecoration);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerView.setEmptyView(R.layout.view_empty);
         mRecyclerView.setAdapter(adapter);
+        mRecyclerView.setRefreshListener(this);
         adapter.setNoMore(R.layout.view_nomore);
         adapter.setMore(R.layout.view_more, this);
         adapter.setError(R.layout.view_error);
@@ -175,7 +198,6 @@ public class BidListActivity extends BaseActivity implements BidListContract.Vie
             mBaseOperation.addParameter("party_text", adapter.getItem(position));
             mBaseOperation.forward(BidInfoListActivity.class);
         });
-        mRecyclerView.setRefreshListener(this);
         mFirstCount.setOnClickListener(v -> {
             currtParty = mISFirst;
             mFirstCount.setTextColor(R.color.white);
@@ -200,7 +222,7 @@ public class BidListActivity extends BaseActivity implements BidListContract.Vie
         int tempCurrent = bid.getBidCountCurrent();
         mSumCount.setTextTitle("共搜索到标书量:").setTextConetxt("" + tempCount).setLeftText("").setRightText("条").setTextColor(R.color.white);
         mNumberProBar.setProgress(Integer.parseInt(StringUtil.getPercent(tempCurrent, tempCount)));
-        List<BidItem> itemList = getBidItems(bid, currtParty);//解析map集合 区分甲乙方数据
+        bidItemList = getBidItems(bid, currtParty);//解析map集合 区分甲乙方数据
         int firstSize = bid.getFirstPartys().size();
         int secondSize = bid.getSecondPartys().size();
         int textContext = 0;//机构名称
@@ -219,7 +241,7 @@ public class BidListActivity extends BaseActivity implements BidListContract.Vie
         mFirstCount.setTextTitle("甲方").setTextConetxt("" + (Integer.parseInt(mFirstCount.getTextContext()) + firstSize)).setTextColor(textColra);
         mSceondCount.setTextTitle("乙方").setTextConetxt("" + (Integer.parseInt(mSceondCount.getTextContext()) + secondSize)).setTextColor(textColrb);
         page++;
-        adapter.addAll(itemList);
+        adapter.addAll(bidItemList);
     }
 
     /**
@@ -261,8 +283,12 @@ public class BidListActivity extends BaseActivity implements BidListContract.Vie
      * 重置 界面显示数量，因为加载更多的时候显示会变成0  所以先变成0然后加上上次显示的数据  就是列表总数据大小
      */
     private void textViewReset() {
+        adapter.clear();
+        mSumCount.reset();
+        mNumberProBar.setProgress(0);
         mBidlistCount.reset();
         mFirstCount.reset();
         mSceondCount.reset();
     }
+
 }
