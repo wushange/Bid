@@ -34,7 +34,6 @@ public class BidInfoListPresenter extends BasePresenter<BidInfoListContract.View
 
     @Override
     public void searchBidList() {
-
         mCompositeSubscription.add(bidApi.getBids(mView.getBidName(), mView.getPageNo()).subscribe(new Subscriber<List<BidInfo>>() {
             @Override
             public void onCompleted() {
@@ -49,6 +48,7 @@ public class BidInfoListPresenter extends BasePresenter<BidInfoListContract.View
             @Override
             public void onNext(List<BidInfo> bidInfos) {
                 Logger.e("返回列表" + bidInfos.toString());
+                mView.searchSuccess(bidInfos);
             }
         }));
 

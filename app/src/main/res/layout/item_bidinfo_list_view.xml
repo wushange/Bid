@@ -1,21 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="110dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/view_defulte_color"
+    android:clickable="true"
     android:orientation="vertical">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/darkgrey" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp">
+        android:layout_height="75dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="10dp">
 
 
         <me.grantland.widget.AutofitTextView
+            android:id="@+id/atv_bid_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:drawableStart="@mipmap/icon_bid_alter"
             android:maxLines="2"
             android:text="这是一个很长很长很长哈开机速度很快撒旦看哈斯卡的哈瞌睡的撒大卡还是得看 看撒后打开速度" />
     </RelativeLayout>
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp">
+
+        <TextView
+            android:id="@+id/tv_bid_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@mipmap/icon_bid_time"
+            android:text="  北京" />
+
+        <TextView
+            android:id="@+id/tv_bid_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:drawableStart="@mipmap/icon_bid_ad"
+            android:text=" 1999-01-01" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="bottom"
+        android:background="@color/darkgrey" />
 </LinearLayout>

@@ -58,7 +58,8 @@
     <com.jude.easyrecyclerview.EasyRecyclerView
         android:id="@+id/bidinfo_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="#f4f4f4" />
 
 
 </LinearLayout>

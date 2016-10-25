@@ -51,7 +51,7 @@ public class BidApi {
 
     public Observable<List<BidInfo>> getBids(String party, int page) {
         Logger.e("页码" + page);
-        return toSubscribe(mBidService.searchKeyword(party, page, 25));
+        return toSubscribe(mBidService.getBids(party, page, 25));
     }
 
     private <T> Observable toSubscribe(Observable<T> o) {

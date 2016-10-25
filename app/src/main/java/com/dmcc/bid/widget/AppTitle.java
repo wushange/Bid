@@ -1,6 +1,7 @@
 package com.dmcc.bid.widget;
 
 import android.content.Context;
+import android.os.SystemClock;
 import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -12,6 +13,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dmcc.bid.R;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -39,6 +45,7 @@ public class AppTitle extends LinearLayout {
     private TextView mRightText;//右侧文本
     private ImageView mRightBtn;//右侧按钮
     private ImageView mRightSubBtn;//右侧sub按钮
+    private OnDoubleClickListener doubleClickListener;
 
     public AppTitle(Context context) {
         super(context);
@@ -57,6 +64,8 @@ public class AppTitle extends LinearLayout {
         initViews(context);
     }
 
+    List<Map<Integer, Long>> counts = new ArrayList<>();
+
     /**
      * 初始化view
      */
@@ -70,6 +79,26 @@ public class AppTitle extends LinearLayout {
         mRightBtn = (ImageView) findViewById(R.id.include_right_btn);
         mRightSubBtn = (ImageView) findViewByHeaderId(R.id.include_right_btn_two);
         mLeftBtn.setVisibility(INVISIBLE);
+        root.setOnClickListener(v -> {
+
+            Map<Integer, Long> tempMap = new HashMap<>();
+            tempMap.put(v.getId(), SystemClock.uptimeMillis());
+            counts.add(tempMap);
+            if (counts.size() == 2)
+
+            {
+                if (counts.get(1).keySet().equals(counts.get(0).keySet()) &&
+                        counts.get(1).get(counts.get(1).keySet().iterator().next()) - counts.get(0).get(counts.get(0).keySet().iterator().next()) < 500) {
+                    if (doubleClickListener != null) {
+                        doubleClickListener.onDoubleClick(v);
+                    }
+                    counts.clear();
+                } else {
+                    counts.remove(0);
+                }
+
+            }
+        });
     }
 
     public AppTitle setAlpha(int alpha) {
@@ -169,6 +198,14 @@ public class AppTitle extends LinearLayout {
         return this;
     }
 
+    public void setOnDoubleClickListener(OnDoubleClickListener doubleClickListener) {
+        this.doubleClickListener = doubleClickListener;
+    }
+
+
+    public interface OnDoubleClickListener {
+        void onDoubleClick(View view);
+    }
 
     public View findViewByHeaderId(int id) {
         return mHeader.findViewById(id);

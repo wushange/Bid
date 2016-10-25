@@ -1,7 +1,9 @@
 package com.dmcc.bid.ui.bidinfolist;
 
 import com.dmcc.bid.base.BaseView;
-import com.dmcc.bid.bean.Bid;
+import com.dmcc.bid.bean.BidInfo;
+
+import java.util.List;
 
 /**
  * Created by wushange on 2016/10/21.
@@ -14,7 +16,7 @@ public class BidInfoListContract {
 
         String getBidName();
 
-        void searchSuccess(Bid bid);
+        void searchSuccess(List<BidInfo> infos);
 
         void searchError(String errinfo);
     }
