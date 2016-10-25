@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/top"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <com.jude.easyrecyclerview.EasyRecyclerView
+            android:id="@+id/erl_bidlist_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
+            app:layout_progress="@layout/view_progress"
+            app:scrollbars="none" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/erl_bidlist_view"
+            android:layout_weight="1"
+            android:background="@color/appThemeColor"
+            android:orientation="horizontal">
+
+            <com.dmcc.bid.widget.CustomTextView
+                android:id="@+id/tv_first_count"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="甲方(0)"
+                android:textColor="@color/white" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.01"
+                android:background="@color/white" />
+
+            <com.dmcc.bid.widget.CustomTextView
+                android:id="@+id/tv_second_count"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="乙方(0)"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/appThemeColor">
+
+            <Button
+                android:id="@+id/back_btn"
+                style="@style/Widget.AppCompat.ActionButton"
+                android:layout_width="36dp"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/back"
+                tools:ignore="ContentDescription" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:layout_toEndOf="@+id/back_btn"
+                android:background="@drawable/bdlist_shap_white_bg">
+
+                <EditText
+                    android:id="@+id/et_bdlist_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toStartOf="@+id/view"
+                    android:background="@null"
+                    android:hint="搜一下，帮您找到潜在机会"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp"
+                    android:transitionName="transitionImg" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="1dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/iv_bdlist_search"
+                    android:background="@color/white" />
+
+                <ImageView
+                    android:id="@+id/iv_bdlist_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:src="@mipmap/search_icon_ss" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/appThemeColor"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+
+                <com.dmcc.bid.widget.CustomTextView
+                    android:id="@+id/tv_bdlist_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <com.daimajia.numberprogressbar.NumberProgressBar
+                    android:id="@+id/number_progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    app:max="100"
+                    app:progress="0"
+                    app:progress_reached_bar_height="6dp"
+                    app:progress_reached_color="#5ed09c"
+                    app:progress_text_color="#ffffff"
+                    app:progress_text_offset="1dp"
+                    app:progress_text_size="14sp"
+                    app:progress_text_visibility="visible"
+                    app:progress_unreached_bar_height="4dp"
+                    app:progress_unreached_color="#CCCCCC" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:background="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+
+                <com.dmcc.bid.widget.CustomTextView
+                    android:id="@+id/tv_list_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center" />
+
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/tv_list_desc"
+                    android:background="@color/textSubColoe" />
+
+                <TextView
+                    android:id="@+id/tv_list_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:drawableStart="@mipmap/list_icon_px"
+                    android:gravity="center"
+                    android:text="  标讯数量"
+                    android:textColor="@color/textSubColoe" />
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/textSubColoe" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>
