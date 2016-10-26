@@ -14,19 +14,19 @@
         android:orientation="vertical"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:paddingTop="10dp">
+        android:paddingTop="8dp">
 
         <me.grantland.widget.AutofitTextView
             android:id="@+id/tv_bdinfo_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="2"
-            android:text="这是一个很长很长很长这是一个很长很长很长这是一个很长很长很长这是一个很长很长很长" />
+            android:text="这是一个很长很长很长这是一个很长很长很长这是一个很长很长很长这是一个很长很长很长"
+            android:textSize="18sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <TextView

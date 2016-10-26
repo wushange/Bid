@@ -11,40 +11,23 @@
         android:layout_height="1dp"
         android:background="@color/darkgrey" />
 
-    <RelativeLayout
+
+    <com.dmcc.bid.widget.MixtureTextView
+        android:id="@+id/tv_test"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:paddingTop="10dp">
+        android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/iv_bid_type"
-            android:layout_width="35dp"
-            android:layout_height="25dp"
-            android:layout_alignParentTop="true"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
             android:src="@mipmap/icon_bid_alter" />
-
-
-        <TextView
-            android:id="@+id/atv_bid_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/iv_bid_type"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:paddingLeft="5dp"
-            android:text="这是一个很长很长很长哈开机速度很快撒旦看哈斯卡的哈瞌睡的撒大卡还是得看 看撒后打开速度"
-            android:textSize="16sp" />
-    </RelativeLayout>
+    </com.dmcc.bid.widget.MixtureTextView>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:paddingLeft="15dp">
 

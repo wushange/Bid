@@ -48,8 +48,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     public void initView(View view) {
         presenter.attachView(this);
         setTranslucentStatus();
-        mUserName.setText("18519232094");
-        mUserPwd.setText("123456");
+//        mUserName.setText("18519232094");
+//        mUserPwd.setText("123456");
         mLoginBtn.setOnClickListener(v -> presenter.login());
     }
 

@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="50dp"
+    android:paddingLeft="15dp">
 
     <ImageView
+        android:id="@+id/iv_cst_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/icon_bid_alter"
-        android:id="@+id/imageView4" />
+        android:src="@mipmap/icon_bid_alter" />
 
 
     <TextView
+        android:id="@+id/tv_cst_two"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="一行文字"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/imageView4"
-        android:id="@+id/textView" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="两行文字"
-        android:layout_below="@+id/imageView4"
         android:layout_alignParentStart="true"
-        android:id="@+id/textView2" />
+        android:layout_below="@+id/iv_cst_img"
+        android:text="两行文字" />
+
+    <TextView
+        android:id="@+id/tv_cst_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/iv_cst_img"
+        android:paddingLeft="10dp"
+        android:text="一行文字" />
 </RelativeLayout>

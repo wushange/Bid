@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
-import android.view.animation.OvershootInterpolator;
 import android.widget.TextView;
 
 import com.dmcc.bid.R;
@@ -15,7 +14,6 @@ import com.dmcc.bid.bean.BidItem;
 import com.dmcc.bid.ui.bidinfolist.adapter.InfoAdapter;
 import com.dmcc.bid.util.PixelUtil;
 import com.dmcc.bid.widget.AppTitle;
-import com.dmcc.bid.widget.x5webview.WebViewActivity;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
@@ -26,7 +24,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import jp.wasabeef.recyclerview.animators.ScaleInBottomAnimator;
 import me.grantland.widget.AutofitTextView;
 
 public class BidInfoListActivity extends BaseActivity implements BidInfoListContract.View, RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
@@ -79,7 +76,7 @@ public class BidInfoListActivity extends BaseActivity implements BidInfoListCont
                 0);//color & height & paddingLeft & paddingRight
         itemDecoration.setDrawLastItem(true);//sometimes you don't want draw the divider for the last item,default is true.
         itemDecoration.setDrawHeaderFooter(true);//whether draw divider for header and footer,default is false.
-        mRecyclerView.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
+//        mRecyclerView.setItemAnimator(new ScaleInBottomAnimator(new OvershootInterpolator(1f)));
         mRecyclerView.addItemDecoration(itemDecoration);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setEmptyView(R.layout.view_empty);
@@ -89,8 +86,10 @@ public class BidInfoListActivity extends BaseActivity implements BidInfoListCont
         adapter.setMore(R.layout.view_more, this);
         adapter.setError(R.layout.view_error);
         adapter.setOnItemClickListener(position -> {
-            WebViewActivity.startActivity(this, "https://github.com/wushge11");
+            mBaseOperation.showToastInCenter("敬请期待");
+//            WebViewActivity.startActivity(this, "https://github.com/wushge11");
         });
+        mRecyclerView.showProgress();
     }
 
 
@@ -104,6 +103,7 @@ public class BidInfoListActivity extends BaseActivity implements BidInfoListCont
     public void onRefresh() {
         page = 1;
         adapter.clear();
+        mRecyclerView.showProgress();
         presenter.searchBidList();
     }
 
@@ -146,8 +146,6 @@ public class BidInfoListActivity extends BaseActivity implements BidInfoListCont
 
     @Override
     public void startLoading() {
-        mRecyclerView.showProgress();
-
     }
 
     @Override
@@ -158,5 +156,11 @@ public class BidInfoListActivity extends BaseActivity implements BidInfoListCont
     @Override
     public void showErrorInfo(String error) {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        presenter.detachView();
+        super.onDestroy();
     }
 }

@@ -157,10 +157,14 @@ public class Operation {
     }
 
     public void showToastInCenter(String msg) {
-        Toast toast = Toast.makeText(mContext, msg, Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
-
+        if (mToast == null) {
+            mToast = Toast.makeText(mContext, msg, Toast.LENGTH_SHORT);
+        } else {
+            mToast.setText(msg);
+            mToast.setDuration(Toast.LENGTH_SHORT);
+        }
+        mToast.setGravity(Gravity.CENTER, 0, 0);
+        mToast.show();
     }
 
 

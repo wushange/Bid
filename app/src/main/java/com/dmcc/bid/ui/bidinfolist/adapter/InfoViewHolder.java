@@ -10,7 +10,6 @@ import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import me.grantland.widget.AutofitTextView;
 
 /**
  * Created by wushange on 2016/10/25.
@@ -18,7 +17,7 @@ import me.grantland.widget.AutofitTextView;
 
 public class InfoViewHolder extends BaseViewHolder<BidInfo> {
     @BindView(R.id.atv_bid_name)
-    AutofitTextView atvBidName;
+    TextView atvBidName;
     @BindView(R.id.tv_bid_location)
     TextView tvBidLocation;
     @BindView(R.id.tv_bid_time)

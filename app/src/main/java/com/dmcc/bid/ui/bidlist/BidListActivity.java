@@ -312,4 +312,10 @@ public class BidListActivity extends BaseActivity implements BidListContract.Vie
         mRecyclerView.showProgress();
     }
 
+    @Override
+    protected void onDestroy() {
+        presenter.detachView();
+        super.onDestroy();
+    }
+
 }
