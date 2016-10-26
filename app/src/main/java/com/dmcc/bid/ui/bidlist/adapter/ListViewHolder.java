@@ -1,4 +1,4 @@
-package com.dmcc.bid.ui.bidlist.fragment;
+package com.dmcc.bid.ui.bidlist.adapter;
 
 import android.view.ViewGroup;
 import android.widget.TextView;

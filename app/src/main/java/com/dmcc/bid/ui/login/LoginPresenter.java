@@ -5,7 +5,9 @@ import android.content.Context;
 import com.dmcc.bid.api.AccountApi;
 import com.dmcc.bid.base.BasePresenter;
 import com.dmcc.bid.bean.Login;
+import com.dmcc.bid.bean.User;
 import com.dmcc.bid.injector.PerActivity;
+import com.dmcc.bid.util.ACache;
 import com.dmcc.bid.util.StringUtil;
 import com.orhanobut.logger.Logger;
 
@@ -64,6 +66,11 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
                 Logger.e("登录结果" + s.toString());
                 if ("0".equals(s.getErrno())) {
                     mView.loginSuccess();
+                    User user = new User();
+                    user.setUserName(mView.getUserName());
+                    user.setUserPwd(mView.getPassword());
+                    user.setAutoLogin(true);
+                    ACache.get(context).put("user",user);
                 } else {
                     mView.loginError(s.getErrmsg());
                 }

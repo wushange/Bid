@@ -10,41 +10,33 @@ public class BidInfo {
 
 
     /**
-     * address : 北京
-     * date : 2016-10-10
-     * id : 22
-     * title : 标22
-     * type : 0
+     * province : 江苏省
+     * time : 2016-10-09 18:36:25.0
+     * title : [询价采购] 关于邗江区城建档案馆全封闭橱式档案密集架及二台70平米除湿机询价采购的公告
+     * type : 招标
+     * usid : 122193090
      */
 
-    private String address;
-    private String date;
-    private String id;
+    private String province;
+    private String time;
     private String title;
     private String type;
+    private String usid;
 
-    public String getAddress() {
-        return address;
+    public String getProvince() {
+        return province;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setProvince(String province) {
+        this.province = province;
     }
 
-    public String getDate() {
-        return date;
+    public String getTime() {
+        return time;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getTitle() {
@@ -63,14 +55,22 @@ public class BidInfo {
         this.type = type;
     }
 
+    public String getUsid() {
+        return usid;
+    }
+
+    public void setUsid(String usid) {
+        this.usid = usid;
+    }
+
     @Override
     public String toString() {
         return "BidInfo{" +
-                "address='" + address + '\'' +
-                ", date='" + date + '\'' +
-                ", id='" + id + '\'' +
+                "province='" + province + '\'' +
+                ", time='" + time + '\'' +
                 ", title='" + title + '\'' +
                 ", type='" + type + '\'' +
+                ", usid='" + usid + '\'' +
                 '}';
     }
 }

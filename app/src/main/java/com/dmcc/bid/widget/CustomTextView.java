@@ -55,6 +55,15 @@ public class CustomTextView extends LinearLayout {
         return mView.findViewById(id);
     }
 
+    public CustomTextView setDefaultText(String textTitle) {
+        mTitle.setText(textTitle);
+        mLeftC.setVisibility(GONE);
+        mContext.setVisibility(GONE);
+        mRightc.setVisibility(GONE);
+        return this;
+    }
+
+
     public CustomTextView setTextTitle(String textTitle) {
         mTitle.setText(textTitle);
         return this;

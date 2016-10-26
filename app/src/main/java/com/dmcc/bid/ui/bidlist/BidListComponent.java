@@ -4,8 +4,6 @@ package com.dmcc.bid.ui.bidlist;
 import com.dmcc.bid.injector.PerActivity;
 import com.dmcc.bid.injector.component.ApplicationComponent;
 import com.dmcc.bid.injector.module.ActivityModule;
-import com.dmcc.bid.ui.bidlist.fragment.FirstpartyFragment;
-import com.dmcc.bid.ui.bidlist.fragment.SecondtpartyFragment;
 
 import dagger.Component;
 
@@ -17,7 +15,4 @@ import dagger.Component;
 public interface BidListComponent {
     void inject(BidListActivity activity);
 
-    void inject(FirstpartyFragment firstpartyFragment);
-
-    void inject(SecondtpartyFragment secondtpartyFragment);
 }

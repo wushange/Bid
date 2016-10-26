@@ -26,7 +26,7 @@ import rx.schedulers.Schedulers;
  */
 public class BidApi {
 
-    static final String BASE_URL = "http://115.29.49.187:8280/bidAPI/";
+    static final String BASE_URL = "http://139.129.129.164:7990/bidAPI/";
     private BidService mBidService;
     private RequestHelper mRequestHelper;
     private Context mContext;
@@ -45,13 +45,13 @@ public class BidApi {
     }
 
     public Observable<Bid> searchKeyWord(String keyword, int page) {
-        Logger.e("页码" + page);
+        Logger.e("searchKeyWord 参数" + keyword + page);
         return toSubscribe(mBidService.searchKeyword(keyword, page, 25));
     }
 
-    public Observable<List<BidInfo>> getBids(String party, int page) {
-        Logger.e("页码" + page);
-        return toSubscribe(mBidService.getBids(party, page, 25));
+    public Observable<List<BidInfo>> getBids(String party, String keyword, String type, int page) {
+        Logger.e("getBids 参数" + party + keyword + type + page);
+        return toSubscribe(mBidService.getBids(party, keyword, type, page, 25));
     }
 
     private <T> Observable toSubscribe(Observable<T> o) {

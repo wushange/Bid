@@ -1,6 +1,7 @@
-package com.dmcc.bid.ui.bidinfolist;
+package com.dmcc.bid.ui.bidinfolist.adapter;
 
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dmcc.bid.R;
@@ -22,6 +23,8 @@ public class InfoViewHolder extends BaseViewHolder<BidInfo> {
     TextView tvBidLocation;
     @BindView(R.id.tv_bid_time)
     TextView tvBidTime;
+    @BindView(R.id.iv_bid_type)
+    ImageView ivBidType;
 
     public InfoViewHolder(ViewGroup parent) {
         super(parent, R.layout.item_bidinfo_list_view);
@@ -31,7 +34,19 @@ public class InfoViewHolder extends BaseViewHolder<BidInfo> {
     @Override
     public void setData(BidInfo data) {
         atvBidName.setText(data.getTitle());
-        tvBidTime.setText("  "+data.getDate());
-        tvBidLocation.setText("  "+data.getAddress());
+        tvBidTime.setText("  " + data.getTime());
+        tvBidLocation.setText("  " + data.getProvince());
+        switch (data.getType()) {
+            case "招标":
+                ivBidType.setImageResource(R.mipmap.icon_bid_ing);
+                break;
+            case "中标":
+                ivBidType.setImageResource(R.mipmap.icon_bid_right);
+                break;
+            case "改标":
+                ivBidType.setImageResource(R.mipmap.icon_bid_alter);
+                break;
+
+        }
     }
 }

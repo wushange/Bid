@@ -12,6 +12,7 @@ import com.dmcc.bid.R;
 import com.dmcc.bid.base.BaseActivity;
 import com.dmcc.bid.bean.BidInfo;
 import com.dmcc.bid.bean.BidItem;
+import com.dmcc.bid.ui.bidinfolist.adapter.InfoAdapter;
 import com.dmcc.bid.util.PixelUtil;
 import com.dmcc.bid.widget.AppTitle;
 import com.dmcc.bid.widget.x5webview.WebViewActivity;
@@ -20,7 +21,6 @@ import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 import com.jude.easyrecyclerview.decoration.DividerDecoration;
 import com.orhanobut.logger.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -46,7 +46,6 @@ public class BidInfoListActivity extends BaseActivity implements BidInfoListCont
     @Inject
     InfoAdapter adapter;
     BidItem mParty;// 公司名称 上个界面列表的key
-    List<BidInfo> mInfos = new ArrayList<>();
     int page = 1;
 
     @Override
@@ -63,7 +62,7 @@ public class BidInfoListActivity extends BaseActivity implements BidInfoListCont
     public void initView(View view) {
         presenter.attachView(this);
         mParty = (BidItem) getIntent().getSerializableExtra("party_text");
-        Logger.e("列表界面传过来的公司名称为" + mParty.toString());
+        Logger.e("列表界面传过来的公司名称为" + mParty.toString() + getKeyWord());
         appTitle.setCenterTitle("历史标讯").setLeftButtonClickListener(v -> finish()).setOnDoubleClickListener(view1 -> {
             if (mRecyclerView.getRecyclerView().getChildAt(0).getTop() == 0) {
                 mRecyclerView.setRefreshing(true);
@@ -126,6 +125,16 @@ public class BidInfoListActivity extends BaseActivity implements BidInfoListCont
     }
 
     @Override
+    public String getKeyWord() {
+        return getIntent().getStringExtra("keyword");
+    }
+
+    @Override
+    public String getType() {
+        return getIntent().getStringExtra("type");
+    }
+
+    @Override
     public void searchSuccess(List<BidInfo> infos) {
         adapter.addAll(infos);
     }
@@ -137,6 +146,7 @@ public class BidInfoListActivity extends BaseActivity implements BidInfoListCont
 
     @Override
     public void startLoading() {
+        mRecyclerView.showProgress();
 
     }
 

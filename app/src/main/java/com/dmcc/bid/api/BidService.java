@@ -22,5 +22,5 @@ public interface BidService {
     Observable<Bid> searchKeyword(@Query("keyword") String keyword, @Query("page") int page, @Query("pages") int pages);
 
     @GET("getBids")
-    Observable<List<BidInfo>> getBids(@Query("party") String party, @Query("page") int page, @Query("pages") int pages);
+    Observable<List<BidInfo>> getBids(@Query("party") String party, @Query("keyword") String keyword, @Query("type") String type, @Query("page") int page, @Query("pages") int pages);
 }

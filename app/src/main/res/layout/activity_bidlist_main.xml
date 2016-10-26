@@ -89,48 +89,37 @@
                 android:drawableLeft="@mipmap/back"
                 tools:ignore="ContentDescription" />
 
-            <RelativeLayout
+
+            <EditText
+                android:id="@+id/et_bdlist_input"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="30dp"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
+                android:layout_marginLeft="10dp"
                 android:layout_toEndOf="@+id/back_btn"
-                android:background="@drawable/bdlist_shap_white_bg">
+                android:layout_toStartOf="@+id/iv_bdlist_search"
+                android:background="@color/white"
+                android:hint="搜一下，帮您找到潜在机会"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                android:textColorHint="@color/white"
+                android:textSize="16sp"
+                android:transitionName="transitionImg" />
 
-                <EditText
-                    android:id="@+id/et_bdlist_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_toStartOf="@+id/view"
-                    android:background="@null"
-                    android:hint="搜一下，帮您找到潜在机会"
-                    android:imeOptions="actionSearch"
-                    android:inputType="text"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
-                    android:textSize="16sp"
-                    android:transitionName="transitionImg" />
 
-                <View
-                    android:id="@+id/view"
-                    android:layout_width="1dp"
-                    android:layout_height="20dp"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@+id/iv_bdlist_search"
-                    android:background="@color/white" />
-
-                <ImageView
-                    android:id="@+id/iv_bdlist_search"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:src="@mipmap/search_icon_ss" />
-            </RelativeLayout>
+            <TextView
+                android:id="@+id/iv_bdlist_search"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:src="@mipmap/search_icon_ss"
+                android:text="搜索"
+                android:textColor="@color/white" />
         </RelativeLayout>
 
         <LinearLayout
@@ -197,8 +186,9 @@
                 <TextView
                     android:id="@+id/tv_list_desc"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
                     android:drawableStart="@mipmap/list_icon_px"
                     android:gravity="center"
                     android:text="  标讯数量"

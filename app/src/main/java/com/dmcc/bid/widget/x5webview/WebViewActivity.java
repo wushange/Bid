@@ -13,7 +13,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.dmcc.bid.R;
 import com.dmcc.bid.base.BaseActivity;
@@ -76,12 +75,7 @@ public class WebViewActivity extends BaseActivity {
         appTitle.getmCenterTitle().setClickable(true);
         appTitle.getmCenterTitle().setMaxEms(11);
         appTitle.setCenterTitle("正在加载...");
-        appTitle.setLeftButtonClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        appTitle.setLeftButtonClickListener(v -> finish());
 
     }
 
@@ -115,21 +109,6 @@ public class WebViewActivity extends BaseActivity {
             }
         }, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE);
 
-
-//        mBaseOperation.checkPermission(mContext, new AcpListener() {
-//            @Override
-//            public void onGranted() {
-//
-//
-//                initWebView();
-//            }
-//
-//            @Override
-//            public void onDenied(List<String> permissions) {
-//
-//            }
-//        }, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE);
-
     }
 
     /**
@@ -140,12 +119,8 @@ public class WebViewActivity extends BaseActivity {
     private void preinitX5WebCore() {
 
         if (!QbSdk.isTbsCoreInited()) {//preinit只需要调用一次，如果已经完成了初始化，那么就直接构造view
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    QbSdk.preInit(WebViewActivity.this, myCallback);
-
-                }
+            new Thread(() -> {
+                QbSdk.preInit(WebViewActivity.this, myCallback);
             }).start();
             //设置X5初始化完成的回调接口  第三个参数为true：如果首次加载失败则继续尝试加载；
         } else {
@@ -162,7 +137,7 @@ public class WebViewActivity extends BaseActivity {
         public void onViewInitFinished() {//当X5webview 初始化结束后的回调
             // TODO Auto-generated method stub
             float deltaTime = (System.currentTimeMillis() - timerCounter) / 1000;
-            Toast.makeText(getContext(), "x5初始化使用了" + deltaTime + "秒", Toast.LENGTH_LONG).show();
+//            Toast.makeText(getContext(), "x5初始化使用了" + deltaTime + "秒", Toast.LENGTH_LONG).show();
             Logger.e("x5初始化使用了" + deltaTime + "秒");
             handler.sendEmptyMessageDelayed(MSG_WEBVIEW_CONSTRUCTOR, 500);
         }

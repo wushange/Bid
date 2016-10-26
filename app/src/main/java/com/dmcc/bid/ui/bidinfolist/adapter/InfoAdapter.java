@@ -1,27 +1,26 @@
-package com.dmcc.bid.ui.bidlist.fragment;
+package com.dmcc.bid.ui.bidinfolist.adapter;
 
 import android.content.Context;
 import android.view.ViewGroup;
 
-import com.dmcc.bid.bean.BidItem;
+import com.dmcc.bid.bean.BidInfo;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 
 import javax.inject.Inject;
 
 /**
- * Created by Mr.Jude on 2015/7/18.
+ * Created by wushange on 2016/10/25.
  */
-public class ListAdapter extends RecyclerArrayAdapter<BidItem> {
 
-
+public class InfoAdapter extends RecyclerArrayAdapter<BidInfo> {
     @Inject
-    public ListAdapter(Context context) {
+    public InfoAdapter(Context context) {
         super(context);
     }
 
     @Override
     public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ListViewHolder(parent);
+        return new InfoViewHolder(parent);
     }
 }

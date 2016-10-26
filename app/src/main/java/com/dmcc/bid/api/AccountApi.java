@@ -22,7 +22,7 @@ import rx.schedulers.Schedulers;
  */
 public class AccountApi {
 
-    static final String BASE_URL = "http://115.29.49.187:8280/bidAPI/";
+    static final String BASE_URL = "http://139.129.129.164:7990/bidAPI/";
     private AccountService mAccountService;
     private RequestHelper mRequestHelper;
     private Context mContext;

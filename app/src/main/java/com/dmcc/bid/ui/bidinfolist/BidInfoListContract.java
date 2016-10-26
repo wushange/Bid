@@ -16,6 +16,10 @@ public class BidInfoListContract {
 
         String getBidName();
 
+        String getKeyWord();
+
+        String getType();
+
         void searchSuccess(List<BidInfo> infos);
 
         void searchError(String errinfo);
